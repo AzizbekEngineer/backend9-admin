@@ -75,6 +75,14 @@ const EditBlog = ({ setEdit, blog }) => {
         <Button className="w-full" type="primary" htmlType="submit">
           Save
         </Button>
+        <Button
+          type="primary"
+          danger
+          className="w-full mt-2"
+          onClick={() => setEdit(false)}
+        >
+          Cancel
+        </Button>
       </Form.Item>
     </Form>
   );

@@ -6,8 +6,6 @@ const CreateBlog = () => {
   const [createBlog, { data }] = useCreateBlogsMutation();
   const handleSubmit = (values) => {
     createBlog(values);
-    console.log("yes");
-    console.log(data);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);

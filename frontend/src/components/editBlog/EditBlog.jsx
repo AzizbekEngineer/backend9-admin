@@ -25,6 +25,10 @@ const EditBlog = ({ setEdit, blog }) => {
       name="basic"
       layout="vertical"
       className="w-96 max-sm:w-full"
+      initialValues={{
+        title: formData?.title,
+        desc: formData?.desc,
+      }}
       labelCol={{
         span: 8,
       }}

@@ -24,13 +24,13 @@ const AdminBlog = () => {
     window.scroll(0, 0);
   }, [edit]);
   const handleEdit = (el) => {
-    setCurrentBlog(el); // Tahrirlash uchun tanlangan blogni o'rnatish
-    setEdit(true); // Tahrirlash oynasini ochish
+    setCurrentBlog(el);
+    setEdit(true);
   };
 
   return (
     <div className="p-4">
-      {edit ? <EditBlog setEdit={setEdit} /> : <></>}
+      {edit ? <EditBlog blog={currentBlog} setEdit={setEdit} /> : <></>}
       <Row gutter={[16, 16]} className="flex flex-wrap">
         {data?.payload?.map((el) => (
           <Col

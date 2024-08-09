@@ -13,6 +13,7 @@ router.delete(
   [auth, ownerMiddleware],
   BlogsController.delete
 );
+router.patch("/api/blogs/:id", BlogsController.updateBlog);
 
 router.get("/api/profile", [auth], UsersController.getProfile);
 router.get("/api/users", UsersController.getAllUsers);

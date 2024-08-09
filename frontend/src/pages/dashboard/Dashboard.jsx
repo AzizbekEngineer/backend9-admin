@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
+import { useGetProfileQuery } from "../../context/api/userApi";
 
 const { Header, Sider, Content } = Layout;
 
@@ -16,6 +17,9 @@ const Dashboard = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const { data } = useGetProfileQuery();
+  console.log(data);
 
   return (
     <Layout className="h-screen">
@@ -26,6 +30,9 @@ const Dashboard = () => {
         className="fixed top-0 left-0 h-screen z-50 py-3"
       >
         <div className="demo-logo-vertical" />
+        <h3 className="p-4 text-xl text-white">
+          {data?.payload?.fname} {data?.payload?.lname}
+        </h3>
         <Menu
           theme="dark"
           mode="inline"
@@ -38,7 +45,7 @@ const Dashboard = () => {
                   <UserOutlined />
                 </NavLink>
               ),
-              label: "nav 1",
+              label: "Manage Blogs",
             },
             {
               key: "2",
@@ -47,7 +54,7 @@ const Dashboard = () => {
                   <VideoCameraOutlined />
                 </NavLink>
               ),
-              label: "nav 2",
+              label: "Creatte Blogs",
             },
             {
               key: "3",

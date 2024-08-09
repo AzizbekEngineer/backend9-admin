@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { useUpdateBlogsMutation } from "../../context/api/blogApi";
 
-const EditBlog = ({ setEdit }) => {
+const EditBlog = ({ setEdit, blog }) => {
+  const [formData, setFormData] = useState(blog);
   const [updateBlog, { data }] = useUpdateBlogsMutation();
 
-  const handleSubmit = async (values) => {
-    try {
-      // API'ga tahrirlangan blogni jo'natish
-      await updateBlog({ id: blog._id, ...values }).unwrap();
-      setEdit(false); // Edit modani yopish
-    } catch (error) {
-      console.error("Blogni tahrirlashda xatolik:", error);
-    }
+  console.log(blog);
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleSubmit = async (formData) => {
+    updateBlog({ body: formData, id: blog._id });
+    setEdit(false);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -37,11 +38,16 @@ const EditBlog = ({ setEdit }) => {
         rules={[
           {
             required: true,
+
             message: "Please enter a title",
           },
         ]}
       >
-        <Input placeholder="Enter title" />
+        <Input
+          placeholder="Enter title"
+          value={formData.title}
+          onChange={handleChange}
+        />
       </Form.Item>
 
       <Form.Item
@@ -54,12 +60,16 @@ const EditBlog = ({ setEdit }) => {
           },
         ]}
       >
-        <Input placeholder="Enter description" />
+        <Input
+          placeholder="Enter description"
+          value={formData.desc}
+          onChange={handleChange}
+        />
       </Form.Item>
 
       <Form.Item>
         <Button className="w-full" type="primary" htmlType="submit">
-          Submit
+          Save
         </Button>
       </Form.Item>
     </Form>

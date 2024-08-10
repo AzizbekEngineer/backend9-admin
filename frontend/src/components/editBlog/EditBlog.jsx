@@ -80,6 +80,7 @@ const EditBlog = ({ setEdit, blog }) => {
           danger
           className="w-full mt-2"
           onClick={() => setEdit(false)}
+          Azizbek20042002
         >
           Cancel
         </Button>

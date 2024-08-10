@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AdminBlog from "./pages/dashboard/adminBlog/AdminBlog";
 import CreateBlog from "./pages/dashboard/createBlog/CreateBlog";
+import ManageUsers from "./pages/dashboard/manageUser/ManageUsers";
+import CreateUsers from "./pages/dashboard/createUsers/CreateUsers";
 
 const Auth = lazy(() => import("./pages/auth/Auth"));
 const Home = lazy(() => import("./pages/home/Home"));
@@ -23,6 +25,8 @@ const App = () => {
           <Route path="dashboard" element={<Dashboard />}>
             <Route path="adminBlog" element={<AdminBlog />} />
             <Route path="createBlog" element={<CreateBlog />} />
+            <Route path="manageUsers" element={<ManageUsers />} />
+            <Route path="createUsers" element={<CreateUsers />} />
           </Route>
         </Route>
       </Routes>

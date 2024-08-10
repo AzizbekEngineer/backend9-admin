@@ -16,7 +16,7 @@ const SignIn = () => {
     if (isSuccess) {
       dispatch(setToken(data.payload.token));
       dispatch(setUser(data.payload.user));
-      navigate("/dashboard");
+      navigate("/dashboard/adminBlog");
     }
   }, [isSuccess]);
 
@@ -58,16 +58,13 @@ const SignIn = () => {
         </Form.Item>
 
         <Form.Item
-          label="Password"
           name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
+          rules={[{ required: true, message: "Please input your password!" }]}
         >
-          <Input.Password placeholder="12345678" />
+          <Input.Password
+            placeholder="12345678"
+            autocomplete="current-password"
+          />
         </Form.Item>
 
         <Form.Item>

@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useCreateBlogsMutation } from "../../../context/api/blogApi";
+import { useNavigate } from "react-router-dom";
 
 const CreateBlog = () => {
-  const [createBlog, { data }] = useCreateBlogsMutation();
+  const navigate = useNavigate();
+  const [createBlog, { data, isSuccess }] = useCreateBlogsMutation();
   const handleSubmit = (values) => {
     createBlog(values);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/dashboard/adminBlog");
+    }
+  }, [isSuccess]);
 
   return (
     <Form

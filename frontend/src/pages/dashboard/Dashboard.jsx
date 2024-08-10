@@ -9,17 +9,70 @@ import {
 import { Button, Layout, Menu, theme } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { useGetProfileQuery } from "../../context/api/userApi";
+import { useDispatch } from "react-redux";
+import { logout } from "../../context/slices/authSlice";
 
 const { Header, Sider, Content } = Layout;
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   const { data } = useGetProfileQuery();
-  console.log(data);
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+  const menuItems = [
+    {
+      key: "1",
+      icon: (
+        <NavLink to={"adminBlog"}>
+          <UserOutlined />
+        </NavLink>
+      ),
+      label: "Manage Blogs",
+    },
+    {
+      key: "2",
+      icon: (
+        <NavLink to={"createBlog"}>
+          <VideoCameraOutlined />
+        </NavLink>
+      ),
+      label: "Create Blogs",
+    },
+    ...(data?.payload?.role === "owner"
+      ? [
+          {
+            key: "3",
+            icon: (
+              <NavLink to={"manageUsers"}>
+                <VideoCameraOutlined />
+              </NavLink>
+            ),
+            label: "Manage Users",
+          },
+          {
+            key: "4",
+            icon: (
+              <NavLink to={"createUsers"}>
+                <VideoCameraOutlined />
+              </NavLink>
+            ),
+            label: "Create Users",
+          },
+        ]
+      : []),
+    {
+      key: "5",
+      icon: <UploadOutlined />,
+      label: "Logout",
+      onClick: handleLogout,
+    },
+  ];
 
   return (
     <Layout className="h-screen">
@@ -37,31 +90,7 @@ const Dashboard = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: (
-                <NavLink to={"adminBlog"}>
-                  <UserOutlined />
-                </NavLink>
-              ),
-              label: "Manage Blogs",
-            },
-            {
-              key: "2",
-              icon: (
-                <NavLink to={"createBlog"}>
-                  <VideoCameraOutlined />
-                </NavLink>
-              ),
-              label: "Creatte Blogs",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
+          items={menuItems}
         />
       </Sider>
       <Layout className={`ml-${collapsed ? "20" : "200"} transition-all`}>

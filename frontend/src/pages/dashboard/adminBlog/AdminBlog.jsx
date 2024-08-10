@@ -16,7 +16,7 @@ const AdminBlog = () => {
   const [currentBlog, setCurrentBlog] = useState(null);
   const [edit, setEdit] = useState(false);
   const handleDelete = (id) => {
-    if (window.confirm("yes")) {
+    if (window.confirm("O'chirmoqchimisz")) {
       DelateBlog(id);
     }
   };
@@ -43,7 +43,7 @@ const AdminBlog = () => {
           >
             <Card
               bordered={false}
-              className="w-full shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="w-full shadow-md hover:shadow-lg transition-shadow duration-300 border-solid border-2 border-black-500"
             >
               <h2 className="text-lg font-semibold">{el?.title}</h2>
               <p className="text-gray-600">{el?.desc}</p>

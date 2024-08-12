@@ -7,7 +7,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useGetProfileQuery } from "../../context/api/userApi";
 import { useDispatch } from "react-redux";
 import { logout } from "../../context/slices/authSlice";
@@ -15,6 +15,7 @@ import { logout } from "../../context/slices/authSlice";
 const { Header, Sider, Content } = Layout;
 
 const Dashboard = () => {
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -27,7 +28,7 @@ const Dashboard = () => {
   };
   const menuItems = [
     {
-      key: "1",
+      key: "adminBlog",
       icon: (
         <NavLink to={"adminBlog"}>
           <UserOutlined />
@@ -36,7 +37,7 @@ const Dashboard = () => {
       label: "Manage Blogs",
     },
     {
-      key: "2",
+      key: "createBlog",
       icon: (
         <NavLink to={"createBlog"}>
           <VideoCameraOutlined />
@@ -47,7 +48,7 @@ const Dashboard = () => {
     ...(data?.payload?.role === "owner"
       ? [
           {
-            key: "3",
+            key: "manageUsers",
             icon: (
               <NavLink to={"manageUsers"}>
                 <VideoCameraOutlined />
@@ -56,7 +57,7 @@ const Dashboard = () => {
             label: "Manage Users",
           },
           {
-            key: "4",
+            key: "createUsers",
             icon: (
               <NavLink to={"createUsers"}>
                 <VideoCameraOutlined />
@@ -90,6 +91,7 @@ const Dashboard = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
+          selectedKeys={pathname.split("/").slice(-1)[0]}
           items={menuItems}
         />
       </Sider>

@@ -150,34 +150,6 @@ class UsersController {
       });
     }
   }
-  // async updateUser(req, res) {
-  //   try {
-  //     const { id } = req.params;
-
-  //     const existingUser = await Users.findOne({ username: req.body.username });
-  //     if (existingUser && id !== existingUser._id?.toString())
-  //       return res.status(400).json({
-  //         msg: "User already exists.",
-  //         variant: "error",
-  //         payload: null,
-  //       });
-
-  //     req.body.password = existingUser.password; //
-
-  //     let user = await Users.findByIdAndUpdate(id, req.body, { new: true });
-  //     res.status(200).json({
-  //       msg: "user updated",
-  //       variant: "success",
-  //       payload: user,
-  //     });
-  //   } catch (err) {
-  //     res.status(500).json({
-  //       msg: err.message,
-  //       variant: "error",
-  //       payload: null,
-  //     });
-  //   }
-  // }
 
   async updateUser(req, res) {
     try {

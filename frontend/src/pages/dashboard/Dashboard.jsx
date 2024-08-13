@@ -57,6 +57,15 @@ const Dashboard = () => {
             label: "Manage Users",
           },
           {
+            key: "manageProduct",
+            icon: (
+              <NavLink to={"manageProduct"}>
+                <VideoCameraOutlined />
+              </NavLink>
+            ),
+            label: "Manage Product",
+          },
+          {
             key: "createUsers",
             icon: (
               <NavLink to={"createUsers"}>
@@ -65,10 +74,19 @@ const Dashboard = () => {
             ),
             label: "Create Users",
           },
+          {
+            key: "createProducts",
+            icon: (
+              <NavLink to={"createProducts"}>
+                <VideoCameraOutlined />
+              </NavLink>
+            ),
+            label: "Create Product",
+          },
         ]
       : []),
     {
-      key: "5",
+      key: "0",
       icon: <UploadOutlined />,
       label: "Logout",
       onClick: handleLogout,

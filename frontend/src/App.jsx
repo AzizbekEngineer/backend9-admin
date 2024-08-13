@@ -5,6 +5,8 @@ import AdminBlog from "./pages/dashboard/adminBlog/AdminBlog";
 import CreateBlog from "./pages/dashboard/createBlog/CreateBlog";
 import ManageUsers from "./pages/dashboard/manageUser/ManageUsers";
 import CreateUsers from "./pages/dashboard/createUsers/CreateUsers";
+import CreateProduct from "./pages/dashboard/createProduct/CreateProduct";
+import ManageProduct from "./pages/dashboard/manageProduct/ManageProduct";
 
 const Auth = lazy(() => import("./pages/auth/Auth"));
 const Home = lazy(() => import("./pages/home/Home"));
@@ -27,6 +29,8 @@ const App = () => {
             <Route path="createBlog" element={<CreateBlog />} />
             <Route path="manageUsers" element={<ManageUsers />} />
             <Route path="createUsers" element={<CreateUsers />} />
+            <Route path="createProducts" element={<CreateProduct />} />
+            <Route path="manageProduct" element={<ManageProduct />} />
           </Route>
         </Route>
       </Routes>
